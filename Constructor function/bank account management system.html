@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>constructor function</h1>
+</body>
+<script>
+    function BankAccount(accountNumber, name, type, balance,value) {
+    this.accountNumber = accountNumber;
+    this.name = name;
+    this.type = type;
+    this.balance = balance;
+    this.isActive = value;
+
+    this.deposit = function (amount) {
+        this.balance += amount;
+    };
+
+    this.withdraw = function (amount) {
+        if (amount <= this.balance) {
+            this.balance -= amount;
+            console.log("sucessfully withdrawn", amount);
+        }
+        else {
+            console.log("insufficient balance : " , this.balance);
+        }
+    };
+
+    this.getTotalbalance = function(){
+        console.log("your total balance is this - ", this.balance);
+    }
+
+}
+
+let ac1 = new BankAccount(1234, "tanya", "saving" , 500,true);
+let ac2 = new BankAccount(1235, "rahul", "saving" , 500,false);
+let ac3 = new BankAccount(1236, "shubh", "saving" , 500,true);
+
+ac1.deposit(100);
+ac1.withdraw(200);
+
+ac2.deposit(200);
+ac2.withdraw(300);
+
+ac3.deposit(1000);
+ac3.withdraw(500);
+
+
+console.log(ac1,ac2,ac3);
+
+let account = [ac1,ac2,ac3];
+// console.log(account);
+
+function getTotalbalance(account){
+let total = 0;
+account.map((ele)=> {
+    if(ele.isActive == true){
+    total += ele.balance;
+    }
+})
+console.log(total);
+}
+getTotalbalance(account);
+
+
+</script>
+</html>
